@@ -1,0 +1,29 @@
+config {
+   type: "view",
+   name: "customer_output_aggregated_materialized_2017",
+   tags: ["production"],
+   materialized: true,
+   bigquery: {
+       additionalOptions: {
+           expiration_timestamp: 'TIMESTAMP("2025-01-01 00:00:00 UTC")',
+           max_staleness: 'INTERVAL "4:0:0" HOUR TO SECOND',  
+       },
+   },
+}
+
+
+SELECT
+ EXTRACT(year
+ FROM
+   date) AS year,
+ country,
+ state,
+ COUNT(user_id) AS users_count
+FROM
+ ${ref("customer_output")}
+WHERE
+ EXTRACT(YEAR from date) = 2017
+GROUP BY
+ 1,
+ 2,
+ 3

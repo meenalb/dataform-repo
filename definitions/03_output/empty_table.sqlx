@@ -1,0 +1,29 @@
+config {
+   type: "operations",
+   name: "empty_table",
+   tags: ["production"],
+   hasOutput: true,  // optional, lets you reference the empty table
+   description: "my empty table",
+    dependencies: ["customer_output"],
+}
+
+
+-- creates an empty table with nested and repeated fields
+
+
+CREATE OR REPLACE TABLE ${self()} (
+ customer_id INTEGER,
+ name STRING,
+ age INTEGER,
+ address
+   ARRAY<
+     STRUCT<
+       city STRING,
+       zip INTEGER,
+       street STRING,
+       start_date DATE,
+       end_date DATE,
+       current_row BOOLEAN
+     >
+   >
+);

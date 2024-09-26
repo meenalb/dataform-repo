@@ -1,0 +1,24 @@
+config {
+   type: "table",
+   tags: ["intermediate"],
+   description: "raw customer data, copied from data-to-insights.customer_insights.customer_web_data_cleaned"
+}
+
+
+SELECT
+`Birthday` as birthday,
+`City` as city,
+`Company` as company,
+`CountryFull` as country,
+`EmailAddress` as email,
+`FirstName` as first_name,
+`LastName` as last_name,
+`Occupation` as job,
+`StateFull` as state,
+`SubmitDate` as date,
+`TelephoneNumber` as phone,
+`UserName` as user_name,
+FARM_FINGERPRINT(CONCAT(Username,EmailAddress)) as user_id
+FROM
+${ref("customer_web_data_cleaned")}
+

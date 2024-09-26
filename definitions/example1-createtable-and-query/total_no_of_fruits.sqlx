@@ -1,0 +1,8 @@
+config {
+    type: "operations"
+}
+
+SELECT
+  SUM(count) AS total_no_of_fruits
+FROM
+  ${ref("fruitbasket")}

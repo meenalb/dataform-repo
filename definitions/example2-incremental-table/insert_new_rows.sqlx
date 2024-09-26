@@ -1,0 +1,7 @@
+config {
+    type: "operations",
+}
+
+INSERT INTO meenalb-demo.dataform_v3.fruitbasket
+VALUES
+  (CURRENT_TIMESTAMP(),"fig", 4);

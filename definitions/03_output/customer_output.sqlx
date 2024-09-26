@@ -1,0 +1,27 @@
+config {
+   type: "table",
+   tags: ["production"],
+   description: "Customer details production table",
+   bigquery: {
+       partitionBy: "DATETIME_TRUNC(date, YEAR)",
+       clusterBy: ["country", "state"],
+   },
+}
+
+
+SELECT
+date,
+user_id,
+user_name,
+birthday,
+city,
+state,
+country,
+STRUCT(phone,
+  email) AS contact,
+STRUCT(first_name,
+  last_name) AS name,
+STRUCT(job,
+  company) AS employment
+FROM
+${ref("customer_intermediate")}

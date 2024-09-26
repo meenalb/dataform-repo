@@ -1,0 +1,18 @@
+config {
+   type: "incremental",
+   name: "weather_incremental",
+   tags: ["incremental"],
+   description: "Weather 2024 incremental table",
+}
+
+
+SELECT
+ stn,
+ wban,
+ date,
+ temp
+FROM
+ ${ref("gsod2024")}
+ ${when(incremental(),
+  `WHERE date > (SELECT MAX(date) FROM ${self()}) AND stn = "010010" AND wban = "99999"`,
+  `WHERE stn = "010010" AND wban = "99999"`)}

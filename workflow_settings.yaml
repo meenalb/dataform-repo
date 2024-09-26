@@ -1,5 +1,4 @@
 defaultProject: meenalb-demo
 defaultLocation: US
-defaultDataset: dataform
-defaultAssertionDataset: dataform_assertions
-dataformCoreVersion: 3.0.0
+defaultDataset: dataform_v3
+defaultAssertionDataset: dataform_assertions_v3

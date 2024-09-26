@@ -1,0 +1,8 @@
+config {
+   type: "declaration",
+   database: "data-to-insights",
+   schema: "customer_insights",
+   name: "customer_web_data_cleaned",
+   description: "source table for customer mock data"
+}
+

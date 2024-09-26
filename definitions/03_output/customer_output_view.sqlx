@@ -1,0 +1,27 @@
+config {
+   type: "view",
+   name: "customer_output_aggregated_2017",
+   tags: ["production"],
+   bigquery: {
+       additionalOptions: {
+           expiration_timestamp: 'TIMESTAMP("2025-01-01 00:00:00 UTC")'
+       }
+   },
+}
+
+
+SELECT
+ EXTRACT(year
+ FROM
+   date) AS year,
+ country,
+ state,
+ COUNT(user_id) AS users_count
+FROM
+ ${ref("customer_output")}
+WHERE
+ EXTRACT(YEAR from date) = 2017
+GROUP BY
+ 1,
+ 2,
+ 3

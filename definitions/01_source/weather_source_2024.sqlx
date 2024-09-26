@@ -1,0 +1,7 @@
+config {
+   type: "declaration",
+   database: "bigquery-public-data",
+   schema: "noaa_gsod",
+   name: "gsod2024",
+   description: "source table for 2024 weather data"
+}
